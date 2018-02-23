@@ -90,9 +90,4 @@ RUN if  test -e downloads/xplor-nih-????-db.tar.gz \
         echo "XPlor NIH not found in downloads."; \
     fi 
 
-## duplicate, just in case requirements was updated without updating Dockerfile
-RUN pip install --no-cache -r requirements_extended.txt
-
-ENV PYTHONPATH $PYTHONPATH:`pwd`
-
 ## CMD ["python"]
