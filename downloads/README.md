@@ -6,5 +6,7 @@ The Dockerfile script also downloads and installs third-party software that can 
 | File name                   | Description           | Source|
 ------------------------------|-----------------------|-------|
 DelPhi_Linux_SP_F95.tar.gz    | Delphi, Fortran single prescission | http://bhapp.c2b2.columbia.edu/software/cgi-bin/software.pl?input=DelPhi |
-xplor-nih-2.47-db.tar.gz      | NIH-Xplor             | https://nmr.cit.nih.gov/xplor-nih/ |
+xplor-nih-2.47-db.tar.gz      | NIH-Xplor Database    | https://nmr.cit.nih.gov/xplor-nih/ |
+xplor-nih-2.47-Linux_x86_64.tar.gz | NIH-Xplor        | https://nmr.cit.nih.gov/xplor-nih/ |
+
 
