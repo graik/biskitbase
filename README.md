@@ -6,6 +6,8 @@ many of the third-party programs for which there exist biskit wrappers. It **doe
 
 The project contains an empty folder `downloads`. The docker script will look in this folder for certain third-party installation files that cannot be freely downloaded. See `downloads/README.md` for details.
 
+Note: this container is optimized for running the Python 3.x version of Biskit (branch `biskit3` in the github project).
+
 To build run:
 
 ```
