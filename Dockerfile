@@ -73,6 +73,11 @@ RUN if test -e downloads/DelPhi_Linux_SP_F95.tar.gz; then \
     fi
 
 ## Try installing XPLOR-NIH from downloads copy
+RUN apt-get -qq update \
+    && apt-get install -y --no-install-recommends \
+         bc \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN if  test -e downloads/xplor-nih-????-db.tar.gz \
       && test -e downloads/xplor-nih-????-Linux_x86_64.tar.gz; then \
         cd /opt ; \
