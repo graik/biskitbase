@@ -59,18 +59,36 @@ WORKDIR /app
 ## download manually and put copies into the `downloads` folder
 
 ## Try installing Delphi from downloads copy
-RUN if test -e downloads/DelPhi_Linux_SP_F95.tar.gz; then \
-       mv downloads/DelPhi_Linux_SP_F95.tar.gz /tmp; \
+# RUN if test -e downloads/Del?hi*95*.tar.gz; then \
+#       mv downloads/Del?hi*.tar.gz /tmp; \
+#       cd /tmp ; \
+#       tar xfz Del?hi*.tar.gz ; \
+#       rm Del?hi*.tar.gz \
+#       mv Del?hi*/ /opt/delphi_sp ; \
+#       ln -s /opt/delphi_sp/executable/delphi95 /usr/local/bin/delphi ; \
+#       cd /app ; \
+#       rm /tmp/Del?hi* ; \
+#       echo "Delphi 95 installed from downloads copy."; \
+#    else \
+#       echo "Delphi 95 not found in downloads"; \
+#    fi
+
+## Try installing Delphi v 7.1 from downloads copy
+RUN if test -e downloads/Delphicpp*.zip; then \
+       mv downloads/Delphicpp*.zip /tmp; \
        cd /tmp ; \
-       tar xfz DelPhi_Linux_SP_F95.tar.gz ; \
-       mv DelPhi*/ /opt/delphi_sp ; \
-       ln -s /opt/delphi_sp/executable/delphi95 /usr/local/bin/delphi ; \
+       unzip -q Delphi*.zip ; \
+       rm Delphi*.zip ; \
+       mv Delphi*/delphi_v??/bin/delphicpp_release \
+          /usr/local/bin/delphi ; \
+       chmod +x /usr/local/bin/delphi ; \
+       rm -r /tmp/Delphi* ; \
        cd /app ; \
-       rm /tmp/DelPhi_Linux_* ; \
-       echo "Delphi installed from downloads copy."; \
+       echo "Delphi v7.1 installed from downloads copy."; \
     else \
-       echo "Delphi not found in downloads"; \
+       echo "Delphi v7.1 not found in downloads"; \
     fi
+
 
 ## Try installing XPLOR-NIH from downloads copy
 RUN apt-get -qq update \
