@@ -42,7 +42,7 @@ RUN cd /tmp \
 
 ## install AmberTools 17
 RUN cd /tmp \
-    && wget http://ambermd.org/downloads/install_ambertools.sh \
+    && wget -nv http://ambermd.org/downloads/install_ambertools.sh \
     && bash install_ambertools.sh --prefix /opt --non-conda \
     && rm -r /opt/ambertools*bz2 
 
@@ -51,7 +51,7 @@ ENV PATH $PATH:$AMBERHOME/bin
 
 ## install HEX 8.1.1 (docking)
 RUN cd /tmp \
-    && wget -q http://hex.loria.fr/dist800/hex-8.1.1-x64-mint17.2.run \
+    && wget -nv http://hex.loria.fr/dist800/hex-8.1.1-x64-mint17.2.run \
     && chmod +x hex-8*.run \
        ## extract archive file without running setup script:
     && mkdir hexsetup \
