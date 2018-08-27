@@ -49,6 +49,26 @@ RUN cd /tmp \
 ENV AMBERHOME /opt/amber17
 ENV PATH $PATH:$AMBERHOME/bin
 
+## install HEX 8.1.1 (docking)
+RUN cd /tmp \
+    && wget -q http://hex.loria.fr/dist800/hex-8.1.1-x64-mint17.2.run \
+    && chmod +x hex-8*.run \
+       ## extract archive file without running setup script:
+    && mkdir hexsetup \
+    && ./hex-8*.run --target /tmp/hexsetup --noexec \
+    && rm hex-8*.run \
+    && mkdir /opt/hex \
+    && cd /opt/hex \
+    && tar xf /tmp/hexsetup/*tgz \
+    && mkdir hex_cache \
+       ## cleanup
+    && rm -r /tmp/hexsetup
+
+ENV HEX_ROOT /opt/hex
+ENV HEX_CACHE /opt/hex/hex_cache
+ENV PATH $PATH:$HEX_ROOT/bin
+
+
 ## Everything following ADD is not cached by Docker
 ## -> the following RUN commands have to be re-executed with every build
 ADD . /app
@@ -112,5 +132,6 @@ RUN if  test -e downloads/xplor-nih-????-db.tar.gz \
     else \
         echo "XPlor NIH not found in downloads."; \
     fi 
+
 
 ## CMD ["python"]
